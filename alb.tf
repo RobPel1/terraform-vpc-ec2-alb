@@ -16,7 +16,6 @@ resource "aws_lb_target_group" "alb-target-group" {
     unhealthy_threshold = 3
   }
 }
-
 resource "aws_lb_target_group_attachment" "attach-app1" {
   target_group_arn = aws_lb_target_group.alb-target-group.arn 
   target_id        = aws_instance.server1.id 
@@ -27,18 +26,16 @@ resource "aws_lb_target_group_attachment" "attach-app" {
   target_id        = aws_instance.server2.id 
   port             = 80
 }
-
 resource "aws_lb_listener" "alb-http-listener" {
     load_balancer_arn = aws_lb.application-lb.arn
-    port              = 80
+    port              = "80"
     protocol          = "HTTP"
   
     default_action {
       type             = "forward"
       target_group_arn = aws_lb_target_group.alb-target-group.arn
     }
-}
-
+  }
 resource "aws_lb" "application-lb" {
   name               = "application-lb"
   internal           = false
