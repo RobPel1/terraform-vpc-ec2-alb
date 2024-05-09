@@ -8,6 +8,6 @@ terraform {
 }
 
 provider "aws" {
-  region = "var.REGION"
+  region = var.REGION
    max_retries = 12
 }
