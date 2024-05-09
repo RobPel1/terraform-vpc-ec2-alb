@@ -1,4 +1,5 @@
 variable "ENVIRONMENT" {
+  default = "webserver1"
   
 }
 
